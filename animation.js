@@ -63,7 +63,7 @@ function create() {
   background.setOrigin(0, 0);
 
   girl1 = this.add.sprite(550, 180, "gir1_sad");
-  boy1 = this.add.sprite(250, 290, "boy1_sad");
+  boy1 = this.add.sprite(220, 270, "boy1_sad");
 
   let bezierCurve = new Phaser.Curves.CubicBezier(
     { x: 1550, y: 950 },
@@ -165,6 +165,13 @@ function create() {
       internetLimitedContainer.add(list2);
       internetLimitedContainer.add(list3);
       internetLimitedContainer.add(list4);
+
+      // Draw credits
+      this.add.text(100, 1050, "Art by Ann Nguen & Rowan | Animation by Jared Sprague", {
+        fontFamily: "RedHatDisplay-Regular",
+        fontSize: 20,
+        color: "#FFFFFF",
+      });
     },
   });
 
@@ -175,7 +182,7 @@ function create() {
     this.tweens.add({
       targets: tweenObject,
       val: 1,
-      duration: 2000,
+      duration: 3200,
       yoyo: false,
       repeat: false,
       ease: "Sine.easeInOut",
@@ -190,6 +197,20 @@ function create() {
           girl1.setTexture("gir1_happy");
           boy1.setTexture("boy1_happy");
           background.setTexture("bg_happy");
+
+          setTimeout(() => {
+            this.tweens.addCounter({
+              from: -5,
+              to: 5,
+              duration: 300,
+              repeat: -1,
+              yoyo: true,
+              onUpdate: function (tween) {
+                girl1.setAngle(tween.getValue());
+                boy1.setAngle(tween.getValue());
+              },
+            });
+          }, 250);
         }, 500);
       },
       onStart: () => {
@@ -197,40 +218,6 @@ function create() {
       },
     });
   });
-}
-
-function movePortalLogo() {
-  this.tweens.add({
-    targets: cpLogo,
-    val: 1,
-    duration: 2000,
-    yoyo: true,
-    repeat: -1,
-    ease: "Sine.easeInOut",
-    callbackScope: this,
-    onUpdate: function (tween, target) {
-      var position = bezierCurve.getPoint(target.val);
-      this.movingPoint.x = position.x;
-      this.movingPoint.y = position.y;
-    },
-  });
-
-  // tween the object from left to right in a linear fashion
-  //   this.game.add
-  //     .tween(fileGroup.position)
-  //     .to({ x: endPosition.x }, time, Phaser.Easing.Linear.None, true);
-
-  //   // chain tween the object up to the Y value with a sinusoidal ease out, then back down with an ease in
-  //   let fileTween = this.game.add
-  //     .tween(fileGroup.position)
-  //     .to({ y: arcPeakY }, time * 0.5, Phaser.Easing.Sinusoidal.Out)
-  //     .to({ y: endPosition.y }, time * 0.5, Phaser.Easing.Sinusoidal.In)
-  //     .start();
-
-  //   fileTween.onComplete.add(() => {
-  //     this.beginPhrase(this.stageTypingText[this.currentStage]);
-  //     fileGroup.destroy();
-  //   }, this);
 }
 
 let state = false;
