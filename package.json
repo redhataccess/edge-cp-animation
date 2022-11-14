@@ -1,0 +1,13 @@
+{
+  "name": "edge-cp-animation",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:redhataccess/edge-cp-animation.git",
+  "author": "Jared Sprague",
+  "license": "GNU",
+  "private": false,
+  "dependencies": {
+    "phaser": "^3.55.2",
+    "prettier": "^2.7.1"
+  }
+}
