@@ -10,8 +10,7 @@ var config = {
   scene: {
     init: init,
     preload: preload,
-    create: create,
-    update: update,
+    create: create
   },
 };
 
@@ -73,9 +72,6 @@ function create() {
   );
 
   // create Red Hat Logo
-  //TEMP:
-  // this.add.image(1550, 900, "cp_logo");
-
   WebFont.load({
     custom: {
       families: ["RedHatDisplay-Regular", "RedHatDisplay-Bold"],
@@ -140,7 +136,7 @@ function create() {
       });
 
       // Draw Internet Limited Edge Label
-      let internetLimitedContainer = this.add.container(920, 390);
+      let internetLimitedContainer = this.add.container(260, 830);
       let list1 = this.add.text(0, -110, "Net-limited edges", {
         fontFamily: "RedHatDisplay-Bold",
         fontSize: 50,
@@ -167,11 +163,16 @@ function create() {
       internetLimitedContainer.add(list4);
 
       // Draw credits
-      this.add.text(100, 1050, "Art by Ann Nguen & Rowan | Animation by Jared Sprague", {
-        fontFamily: "RedHatDisplay-Regular",
-        fontSize: 20,
-        color: "#FFFFFF",
-      });
+      this.add.text(
+        100,
+        1050,
+        "Art by Ann Nguen | Animation by Jared & Rowan Sprague",
+        {
+          fontFamily: "RedHatDisplay-Regular",
+          fontSize: 20,
+          color: "#FFFFFF",
+        }
+      );
     },
   });
 
@@ -220,10 +221,3 @@ function create() {
   });
 }
 
-let state = false;
-function update() {
-  if (!state) {
-    // girl1_happy.setTexture("girl1_sad");
-    state = true;
-  }
-}
